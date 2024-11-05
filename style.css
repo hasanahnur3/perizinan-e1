@@ -191,3 +191,14 @@ body {
     animation: slideInLeft 0.7s ease-in-out;
 }
 
+
+.small-text-muted {
+    font-size: 0.8rem; /* Adjust to your preferred small size */
+    color: #6c757d; /* Optional: A muted color */
+}
+
+.small-text {
+    font-size: 0.8rem; /* Adjust to your preferred small size */
+}
+
+

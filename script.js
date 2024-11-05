@@ -196,6 +196,11 @@ function populateChecklistTable() {
         tableHeader.innerHTML += `<th>Remarks</th>`;
     }
 
+
+    tableHeader.innerHTML += `
+    <th>Dokumen</th>
+`;
+
     checklistData.forEach((row, index) => {
         const tableRow = document.createElement("tr");
 
@@ -331,6 +336,77 @@ function populateChecklistTable() {
             remarksCell.appendChild(messageIcon);
             tableRow.appendChild(remarksCell);
         }
+
+
+
+
+
+
+
+
+
+
+
+        const dokumenCell = document.createElement("td");
+        dokumenCell.style.width = "15%";
+
+        // If Bank view
+        if (!isPengawasView) {
+            if (row.uploadedFile) {
+                // Display uploaded file name and "X" to remove it
+                const fileName = document.createElement("span");
+                fileName.textContent = row.uploadedFile.name;
+                fileName.classList.add("small-text-muted"); // Add this line to apply the class
+                dokumenCell.appendChild(fileName);
+
+                const removeButton = document.createElement("button");
+                removeButton.classList.add("btn", "btn-outline-danger", "btn-sm", "ms-2");
+                removeButton.textContent = "X";
+                removeButton.onclick = () => {
+                    row.uploadedFile = null;
+                    populateChecklistTable();
+                };
+                dokumenCell.appendChild(removeButton);
+            } else {
+                // Show upload button
+                const uploadButton = document.createElement("button");
+                uploadButton.classList.add("btn", "btn-outline-primary", "btn-sm");
+                uploadButton.textContent = "Upload";
+                uploadButton.onclick = () => {
+                    const fileInput = document.createElement("input");
+                    fileInput.type = "file";
+                    fileInput.onchange = (event) => {
+                        row.uploadedFile = event.target.files[0];
+                        populateChecklistTable();
+                    };
+                    fileInput.click();
+                };
+                dokumenCell.appendChild(uploadButton);
+            }
+        } else {
+            // If Pengawas view
+            if (row.uploadedFile) {
+                const fileLink = document.createElement("a");
+                fileLink.href = "#"; // Placeholder link
+                fileLink.textContent = row.uploadedFile.name;
+                fileLink.classList.add("small-text"); // Add this line to apply the class
+                dokumenCell.appendChild(fileLink);
+            }
+        }
+
+        tableRow.appendChild(dokumenCell);
+
+
+
+
+
+
+
+
+
+
+
+
 
         tableBody.appendChild(tableRow);
     });
