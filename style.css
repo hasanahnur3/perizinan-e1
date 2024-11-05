@@ -86,12 +86,12 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 1050; /* High z-index to stay on top of other elements */
     display: flex;
     border-radius: 25px;
     overflow: hidden;
     background-color: #007bff;
-    width: fit-content;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Optional: adds shadow for better visibility */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Optional shadow for visibility */
 }
 
 
@@ -114,4 +114,79 @@ body {
 .keterangan-cell div {
     color: gray;
     font-size: 0.9em;
+}
+
+
+
+
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Light grey background */
+    border-bottom: 1px solid #e0e0e0; /* Slightly darker grey border */
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1); /* Drop shadow */
+    z-index: 1000; /* Ensures the top bar stays above other elements */
+}
+
+.ojk-logo {
+    width: 80px; /* Adjust logo size as needed */
+    height: auto;
+}
+
+.top-bar-title {
+    font-weight: 400;
+    color: #333; /* Darker text color */
+    font-size: 0.9rem; /* Adjust size as needed */
+}
+
+/* Add padding to the body or main container to prevent content from hiding behind the fixed top bar */
+body {
+    padding-top: 60px; /* Adjust based on the height of your top bar */
+}
+
+
+
+
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Optional: Slight move from bottom */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-in-tab-content {
+    opacity: 0; /* Initial state */
+    animation: fadeIn 0.5s ease-in-out forwards; /* Fade in animation */
+}
+
+
+
+
+
+/* Slide-in from the left with fade-in effect */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px); /* Start from 30px to the left */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0); /* End at original position */
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.7s ease-in-out;
 }

@@ -294,7 +294,17 @@ function openFullKeteranganModal(keteranganList) {
 
 
 
-// Initialize default view as Bank
+// JavaScript to handle tab change with fade-in effect
 document.addEventListener("DOMContentLoaded", () => {
-    setPOV('bank');
+    const myTab = document.getElementById('myTab');
+    const tabContent = document.getElementById('myTabContent');
+
+    // Apply fade-in animation on tab change
+    myTab.addEventListener('shown.bs.tab', () => {
+        tabContent.classList.remove('fade-in-tab-content'); // Reset animation
+        void tabContent.offsetWidth; // Trigger reflow to restart animation
+        tabContent.classList.add('fade-in-tab-content');
+    });
+    
+    setPOV('bank'); // Initialize default view as Bank
 });

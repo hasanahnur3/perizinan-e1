@@ -10,12 +10,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+
+
 <body>
+    <div class="top-bar shadow-sm">
+        <div class="container d-flex align-items-center justify-content-center py-2 fade-in">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/OJK_Logo.png" alt="OJK Logo" class="ojk-logo me-2">
+            <p class="top-bar-title mb-0">Demo Dashboard Perizinan Produk Otoritas Jasa Keuangan</p>
+        </div>
+    </div>
+    
+    <div class="btn-toggle-group mt-4">
+        <button id="pengawasBtn" class="btn btn-toggle" onclick="setPOV('pengawas')">Pengawas</button>
+        <button id="bankBtn" class="btn btn-toggle active" onclick="setPOV('bank')">Bank</button>
+    </div>
+    
+
     <div class="container mt-4">
-        <h1 class="mb-4"><b>Perizinan Produk Baru Bank Umum</b></h1>
+        <h1 class="mb-4 slide-in-left"><b>Perizinan Produk Baru Bank Umum</b></h1>
+
         <div class="row mb-3">
             <!-- Pengawas Section -->
-            <div class="col-md-4 card-section">
+            <div class="col-md-4 card-section fade-in">
                 <div class="card p-3">
                     <h6 class="mb-3"><b>Pengawas</b></h6>
                     <div class="d-flex align-items-center mb-4">
@@ -38,7 +54,7 @@
             </div>
         
             <!-- BPR Terkait and Product Manager Section -->
-            <div class="col-md-4 card-section">
+            <div class="col-md-4 card-section fade-in">
                 <div class="card p-3">
                     <h6 class="mb-3"><b>Bank Terkait</b></h6>
                     <div class="d-flex align-items-center mb-3">
@@ -59,7 +75,7 @@
             </div>
         
             <!-- Product Information Card -->
-            <div class="col-md-4 card-section">
+            <div class="col-md-4 card-section fade-in">
                 <div class="card p-3">
                     <h6 class="mb-3"><b>Informasi Produk</b></h6><br>
                     <div class="d-flex flex-column">
@@ -75,12 +91,7 @@
                 </div>
             </div>            
         </div>
-        
-
-        <div class="btn-toggle-group mt-4">
-            <button id="pengawasBtn" class="btn btn-toggle" onclick="setPOV('pengawas')">Pengawas</button>
-            <button id="bankBtn" class="btn btn-toggle active" onclick="setPOV('bank')">Bank</button>
-        </div>
+    
 
         <!-- Tabs Section -->
         <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
