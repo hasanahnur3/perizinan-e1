@@ -15,7 +15,7 @@
         <h1 class="mb-4"><b>Perizinan Produk Baru Bank Umum</b></h1>
         <div class="row mb-3">
             <!-- Pengawas Section -->
-            <div class="col-md-6 card-section">
+            <div class="col-md-4 card-section">
                 <div class="card p-3">
                     <h6 class="mb-3"><b>Pengawas</b></h6>
                     <div class="d-flex align-items-center mb-4">
@@ -36,9 +36,9 @@
                     </div>
                 </div>
             </div>
-
+        
             <!-- BPR Terkait and Product Manager Section -->
-            <div class="col-md-6 card-section">
+            <div class="col-md-4 card-section">
                 <div class="card p-3">
                     <h6 class="mb-3"><b>Bank Terkait</b></h6>
                     <div class="d-flex align-items-center mb-3">
@@ -57,7 +57,25 @@
                     </div>
                 </div>
             </div>
+        
+            <!-- Product Information Card -->
+            <div class="col-md-4 card-section">
+                <div class="card p-3">
+                    <h6 class="mb-3"><b>Informasi Produk</b></h6><br>
+                    <div class="d-flex flex-column">
+                        <div class="mb-2">
+                            <span><b>Nama Produk</b></span><br>
+                            <span>Investasi Dalam Mobile App</span>
+                        </div>
+                        <div>
+                            <span><b>Tanggal Pembuatan Template Perizinan</b></span><br>
+                            <span>5 November 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </div>
+        
 
         <div class="btn-toggle-group mt-4">
             <button id="pengawasBtn" class="btn btn-toggle" onclick="setPOV('pengawas')">Pengawas</button>
@@ -93,51 +111,68 @@
                         <tbody id="checklistTableBody"></tbody>
                     </table>
                 </div>
-            </div>
-
-<!-- Full Keterangan Modal -->
-<div class="modal fade" id="fullKeteranganModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content p-4">
-            <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-body">
-                <div id="fullKeteranganContent"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
             
-        
+                <!-- Approve Perizinan Button for Pengawas View -->
+                <div id="approvePerizinanContainer" class="text-center mt-4" style="display: none;">
+                    <button class="btn btn-primary w-50" onclick="approvePerizinan()">Approve Perizinan</button>
+                </div>
+            </div>
+            
+
+            <!-- Full Keterangan Modal -->
+            <div class="modal fade" id="fullKeteranganModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content p-4">
+                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-body">
+                            <div id="fullKeteranganContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
             <!-- Upload Document Tab -->
             <div class="tab-pane fade" id="upload" role="tabpanel" aria-labelledby="upload-tab">
                 <div id="bankUploadSection">
                     <p class="instructions">Mohon unggah dokumen - dokumen yang dibutuhkan.</p>
                     <div class="upload-area" onclick="document.getElementById('fileInput').click();">
-                        <input type="file" id="fileInput" multiple style="display: none;" onchange="handleFiles(this.files)">
-                        Drag and Drop file here or <span style="color: #007bff; text-decoration: underline; cursor: pointer;">Choose file</span>
+                        <input type="file" id="fileInput" multiple style="display: none;"
+                            onchange="handleFiles(this.files)">
+                        Drag and Drop file here or <span
+                            style="color: #007bff; text-decoration: underline; cursor: pointer;">Choose file</span>
                     </div>
                     <div id="fileList" class="mt-3"></div>
-                    <button class="btn btn-primary mt-3" onclick="submitDocuments()">Submit</button>
+                    <!-- <button class="btn btn-primary mt-3" onclick="submitDocuments()">Submit</button> -->
+
+                <div class="text-center mt-4" >
+                    <button class="btn btn-primary w-50" onclick="submitDocuments()">Submit</button>
                 </div>
-        
+                </div>
+
                 <div id="pengawasUploadSection" style="display: none;">
                     <ul class="list-group" id="pengawasFileList"></ul>
                 </div>
             </div>
         </div>
 
+        <br> <br> <br> <br> <br>
+
         <!-- Remarks Modal -->
         <div class="modal fade" id="remarksModal" tabindex="-1" aria-labelledby="remarksModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="remarksModalLabel">Berikan remarks untuk <span id="docTypeName"></span></h5>
+                        <h5 class="modal-title" id="remarksModalLabel">Berikan remarks untuk <span
+                                id="docTypeName"></span></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <textarea id="remarksTextarea" class="form-control" rows="4" placeholder="Tulis remarks..."></textarea>
+                        <textarea id="remarksTextarea" class="form-control" rows="4"
+                            placeholder="Tulis remarks..."></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="submitRemarks()">Submit</button>
@@ -148,26 +183,30 @@
         </div>
 
         <!-- Confirmation Modal for Documents -->
-        <div class="modal fade" id="confirmationModalDocuments" tabindex="-1" aria-labelledby="confirmationModalLabelDocuments" aria-hidden="true">
+        <div class="modal fade" id="confirmationModalDocuments" tabindex="-1"
+            aria-labelledby="confirmationModalLabelDocuments" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content text-center p-4">
                     <img src="https://media.tenor.com/0cvxil96K7YAAAAj/check.gif" alt="Check"
-                         style="width: 80px; height: 80px; display: block; margin: 0 auto; padding:10px">
+                        style="width: 80px; height: 80px; display: block; margin: 0 auto; padding:10px">
                     <h5 class="fw-bold">Dokumen - Dokumen Berhasil Diunggah</h5>
-                    <h6 class="mt-2 text-muted">Pengawas sudah diberi notifikasi terkait dokumen - dokumen yang Angga unggah</h6>
+                    <h6 class="mt-2 text-muted">Pengawas sudah diberi notifikasi terkait dokumen - dokumen yang Angga
+                        unggah</h6>
                     <button type="button" class="btn btn-primary mt-3" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
 
         <!-- Confirmation Modal for Remarks -->
-        <div class="modal fade" id="confirmationModalRemarks" tabindex="-1" aria-labelledby="confirmationModalLabelRemarks" aria-hidden="true">
+        <div class="modal fade" id="confirmationModalRemarks" tabindex="-1"
+            aria-labelledby="confirmationModalLabelRemarks" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content text-center p-4">
                     <img src="https://media.tenor.com/0cvxil96K7YAAAAj/check.gif" alt="Check"
-                         style="width: 80px; height: 80px; display: block; margin: 0 auto; padding:10px">
+                        style="width: 80px; height: 80px; display: block; margin: 0 auto; padding:10px">
                     <h5 class="fw-bold">Remarks Berhasil Ditambahkan</h5>
-                    <h6 class="mt-2 text-muted">Perwakilan bank sudah diberi notfikasi terkait perubahan yang perlu dilakukan</h6>
+                    <h6 class="mt-2 text-muted">Perwakilan bank sudah diberi notfikasi terkait perubahan yang perlu
+                        dilakukan</h6>
                     <button type="button" class="btn btn-primary mt-3" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>

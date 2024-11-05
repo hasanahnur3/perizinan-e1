@@ -7,8 +7,13 @@ function setPOV(role) {
     document.getElementById('pengawasUploadSection').style.display = isPengawasView ? 'block' : 'none';
     document.getElementById('pengawasBtn').classList.toggle('active', isPengawasView);
     document.getElementById('bankBtn').classList.toggle('active', !isPengawasView);
+    
+    // Show or hide the Approve Perizinan button based on role
+    document.getElementById('approvePerizinanContainer').style.display = isPengawasView ? 'block' : 'none';
+
     populateChecklistTable(); // Refresh table to apply permissions
 }
+
 
 // Handle file uploads and display
 function handleFiles(files) {
