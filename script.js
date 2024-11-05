@@ -72,19 +72,31 @@ function openRemarksModal(docType) {
 // Function to submit the remarks and show confirmation modal
 function submitRemarks() {
     const remarksText = document.getElementById("remarksTextarea").value;
-    
+    const timestamp = new Date().toLocaleString();
+
+    // Find the entry in checklistData based on currentDocType
+    const entry = checklistData.find(item => item.jenisDokumen === currentDocType);
+
+    if (entry) {
+        // Add the remark to the keterangan field with the specified format
+        entry.keterangan.push(`${timestamp} Pengawas Budi Kurniadi Yunis: ${remarksText}`);
+    }
+
+    // Clear the remarks textarea after submission
+    document.getElementById("remarksTextarea").value = "";
+
     // Close the remarks modal
     const remarksModal = bootstrap.Modal.getInstance(document.getElementById('remarksModal'));
     if (remarksModal) {
         remarksModal.hide();
     }
-    
-    // Clear the textarea for future use
-    document.getElementById("remarksTextarea").value = "";
-    
-    // Show the confirmation modal after closing the remarks modal
+
+    // Show the confirmation modal for remarks
     const confirmationModalRemarks = new bootstrap.Modal(document.getElementById('confirmationModalRemarks'));
     confirmationModalRemarks.show();
+
+    // Repopulate the checklist table to reflect the new keterangan entry
+    populateChecklistTable();
 }
 
 
