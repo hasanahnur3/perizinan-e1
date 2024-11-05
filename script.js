@@ -3,8 +3,6 @@ let isPengawasView = false;
 // Set the Point of View (POV) - Pengawas or Bank
 function setPOV(role) {
     isPengawasView = (role === 'pengawas');
-    document.getElementById('bankUploadSection').style.display = isPengawasView ? 'none' : 'block';
-    document.getElementById('pengawasUploadSection').style.display = isPengawasView ? 'block' : 'none';
     document.getElementById('pengawasBtn').classList.toggle('active', isPengawasView);
     document.getElementById('bankBtn').classList.toggle('active', !isPengawasView);
     
@@ -369,35 +367,9 @@ function openRemarksModal(docType) {
     remarksModal.show();
 }
 
-// JavaScript to handle tab change with fade-in effect
-document.addEventListener("DOMContentLoaded", () => {
-    const myTab = document.getElementById('myTab');
-    const tabContent = document.getElementById('myTabContent');
-
-    // Apply fade-in animation on tab change
-    myTab.addEventListener('shown.bs.tab', () => {
-        tabContent.classList.remove('fade-in-tab-content'); // Reset animation
-        void tabContent.offsetWidth; // Trigger reflow to restart animation
-        tabContent.classList.add('fade-in-tab-content');
-    });
-    
-    setPOV('bank'); // Initialize default view as Bank
-});
-
-
 
 
 // JavaScript to handle tab change with fade-in effect
-document.addEventListener("DOMContentLoaded", () => {
-    const myTab = document.getElementById('myTab');
-    const tabContent = document.getElementById('myTabContent');
-
-    // Apply fade-in animation on tab change
-    myTab.addEventListener('shown.bs.tab', () => {
-        tabContent.classList.remove('fade-in-tab-content'); // Reset animation
-        void tabContent.offsetWidth; // Trigger reflow to restart animation
-        tabContent.classList.add('fade-in-tab-content');
-    });
-    
+document.addEventListener("DOMContentLoaded", () => {    
     setPOV('bank'); // Initialize default view as Bank
 });
