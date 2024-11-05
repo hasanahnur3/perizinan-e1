@@ -177,7 +177,7 @@ function populateChecklistTable() {
     tableHeader.innerHTML = `
         <th>Uraian</th>
         <th>Jenis Dokumen</th>
-        <th>Penilaian (Ya)</th>
+        <th>Penilaian</th>
         <th>Keterangan</th>
     `;
 
@@ -247,7 +247,7 @@ function populateChecklistTable() {
                 keteranganCell.appendChild(seeMoreLink);
             }
         } else {
-            keteranganCell.textContent = "-"; // Default if no entries
+            keteranganCell.textContent = ""; // Default if no entries
         }
 
         tableRow.appendChild(keteranganCell);
@@ -273,24 +273,37 @@ function populateChecklistTable() {
     });
 }
 
-
 function openFullKeteranganModal(keteranganList) {
-    const fullKeteranganContent = document.getElementById("fullKeteranganContent");
-    fullKeteranganContent.innerHTML = ""; // Clear previous content
+    // Close any other modals that might be open
+    const confirmationModalDocuments = bootstrap.Modal.getInstance(document.getElementById('confirmationModalDocuments'));
+    const confirmationModalRemarks = bootstrap.Modal.getInstance(document.getElementById('confirmationModalRemarks'));
 
+    if (confirmationModalDocuments) {
+        confirmationModalDocuments.hide();
+    }
+    if (confirmationModalRemarks) {
+        confirmationModalRemarks.hide();
+    }
+
+    // Clear previous content
+    const fullKeteranganContent = document.getElementById("fullKeteranganContent");
+    fullKeteranganContent.innerHTML = ""; 
+
+    // Populate the content for full remarks
     keteranganList.forEach(entry => {
         const entryDiv = document.createElement("div");
-        entryDiv.className = "mb-2"; // Add margin for spacing
-        entryDiv.style.color = "#6c757d"; // Style the text to a lighter color
-        entryDiv.style.fontSize = "0.9rem"; // Make the font slightly smaller
-        entryDiv.innerHTML = entry; // Use innerHTML to render any HTML tags
+        entryDiv.className = "mb-2";
+        entryDiv.style.color = "#6c757d";
+        entryDiv.style.fontSize = "0.9rem";
+        entryDiv.innerHTML = entry;
         fullKeteranganContent.appendChild(entryDiv);
     });
 
-    // Show the modal
+    // Show the fullKeteranganModal
     const fullKeteranganModal = new bootstrap.Modal(document.getElementById('fullKeteranganModal'));
     fullKeteranganModal.show();
 }
+
 
 
 
