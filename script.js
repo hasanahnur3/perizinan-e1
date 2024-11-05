@@ -72,10 +72,21 @@ function openRemarksModal(docType) {
 // Function to submit the remarks and show confirmation modal
 function submitRemarks() {
     const remarksText = document.getElementById("remarksTextarea").value;
-    document.getElementById("remarksTextarea").value = ""; // Clear textarea
+    
+    // Close the remarks modal
+    const remarksModal = bootstrap.Modal.getInstance(document.getElementById('remarksModal'));
+    if (remarksModal) {
+        remarksModal.hide();
+    }
+    
+    // Clear the textarea for future use
+    document.getElementById("remarksTextarea").value = "";
+    
+    // Show the confirmation modal after closing the remarks modal
     const confirmationModalRemarks = new bootstrap.Modal(document.getElementById('confirmationModalRemarks'));
     confirmationModalRemarks.show();
 }
+
 
 // Checklist data
 const checklistData = [
