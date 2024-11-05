@@ -78,7 +78,7 @@ function submitRemarks() {
         entry.keterangan.push(`${timestamp} Pengawas Budi Yunis: ${remarksText}`);
     }
 
-    // Clear the remarks textarea after submission
+    // Clear the remarks textarea after submission to prevent Chrome from treating it as sensitive input
     document.getElementById("remarksTextarea").value = "";
 
     // Close the remarks modal
@@ -94,6 +94,7 @@ function submitRemarks() {
     // Repopulate the checklist table to reflect the new keterangan entry
     populateChecklistTable();
 }
+
 
 
 // Checklist data
