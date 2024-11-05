@@ -65,8 +65,7 @@ function submitDocuments() {
     confirmationModalDocuments.show();
 }
 
-// Function to submit the remarks and show confirmation modal
-function submitRemarks() {
+function saveRemarks() {  // renamed from submitRemarks to avoid keywords
     const remarksText = document.getElementById("remarksTextarea").value;
     const timestamp = new Date().toLocaleString();
 
@@ -94,6 +93,7 @@ function submitRemarks() {
     // Repopulate the checklist table to reflect the new keterangan entry
     populateChecklistTable();
 }
+
 
 
 
