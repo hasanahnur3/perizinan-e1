@@ -101,92 +101,109 @@ function saveRemarks() {
 // Checklist data
 const checklistData = [
     {
-        uraian: "Pasal 5 (1). Bank harus mencantumkan rencana penyelenggaraan Produk Bank baru dalam RPPB.",
-        jenisDokumen: "Dokumen rencana penyelenggaraan produk bank (Lampiran IV.1)",
-        penilaianYa: false,
-        keterangan: []
+        "No": 1,
+        "uraian": "Pasal 5 ayat 1",
+        "jenisDokumen": "Dokumen rencana penyelenggaraan produk bank (Lampiran IV.1)",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 5 (4). Bank wajib memiliki mekanisme pengukuran atau penilaian atas materialitas peningkatan eksposur risiko dari pengembangan Produk Bank.",
-        jenisDokumen: "Dokumen yang menunjukkan penilaian materialitas atas eksposur risiko pengembangan produk",
-        penilaianYa: false,
-        keterangan: []
+        "No": 2,
+        "uraian": "Pasal 5 ayat 1",
+        "jenisDokumen": "Dokumen Permohonan Izin Penyelenggaraan Produk Bank Lanjutan Baru / Permohonan Izin dalam Bentuk Pemberitahuan Penyelenggaraan Produk Bank Lanjutan Baru / Pendukung Realisasi Penyelenggaraan Produk Bank Dasar Baru (Lampiran IV.2)",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 7 (1). Bank wajib memiliki kebijakan dan prosedur secara tertulis untuk mengelola risiko yang melekat pada Produk Bank.",
-        jenisDokumen: "SOP Manajemen risiko produk baru",
-        penilaianYa: false,
-        keterangan: []
+        "No": 3,
+        "uraian": "Pasal 5 ayat 4",
+        "jenisDokumen": "Dokumen yang menunjukkan penilaian materialitas atas eksposur risiko pengembangan produk",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 7 (2a). Sistem dan prosedur serta kewenangan dalam pengelolaan Produk Bank.",
-        jenisDokumen: "SOP produk baru",
-        penilaianYa: false,
-        keterangan: []
+        "No": 4,
+        "uraian": "Pasal 7 ayat 1",
+        "jenisDokumen": "SOP Manajemen risiko produk baru paling sedikit mencakup :",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 7 (2b). Identifikasi seluruh risiko yang melekat pada Produk Bank.",
-        jenisDokumen: "Keterangan risiko pada produk baru",
-        penilaianYa: false,
-        keterangan: []
+        "No": 5,
+        "uraian": "Pasal 7 ayat 2 huruf a",
+        "jenisDokumen": "(a) SOP produk baru",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 7 (2c). Metode pengukuran dan pemantauan risiko atas Produk Bank.",
-        jenisDokumen: "Keterangan pengukuran dan pemantauan risiko",
-        penilaianYa: false,
-        keterangan: []
+        "No": "",
+        "uraian": "Pasal 7 ayat 2 huruf b",
+        "jenisDokumen": "(b) Keterangan risiko pada produk baru",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 7 (2d). Metode pencatatan akuntansi untuk Produk Bank.",
-        jenisDokumen: "Keterangan metode akuntansi",
-        penilaianYa: false,
-        keterangan: []
+        "No": "",
+        "uraian": "Pasal 7 ayat 2 huruf c",
+        "jenisDokumen": "(c) Keterangan pengukuran dan pemantauan risiko",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 7 (2e). Analisis aspek hukum Produk Bank.",
-        jenisDokumen: "Analisis hukum pada produk bank",
-        penilaianYa: false,
-        keterangan: []
+        "No": "",
+        "uraian": "Pasal 7 ayat 2 huruf d",
+        "jenisDokumen": "(d) Keterangan metode akuntansi",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 7 (2f). Transparansi informasi kepada nasabah sesuai dengan Peraturan Otoritas Jasa Keuangan mengenai perlindungan konsumen sektor jasa keuangan.",
-        jenisDokumen: "SOP perlindungan konsumen",
-        penilaianYa: false,
-        keterangan: []
+        "No": "",
+        "uraian": "Pasal 7 ayat 2 huruf e",
+        "jenisDokumen": "(e) Analisis hukum pada produk bank",
+        "penilaianYa": false,
+        "keterangan": []
     },
     {
-        uraian: "Pasal 9 (1). Bank yang menyelenggarakan Produk Bank dasar menyampaikan laporan realisasi Produk Bank dasar baru kepada Otoritas Jasa Keuangan.",
-        jenisDokumen: "Laporan realisasi Produk Bank Dasar Baru (Lampiran IV)",
-        penilaianYa: false,
-        keterangan: []
+        "No": "",
+        "uraian": "Pasal 7 ayat 2 huruf f",
+        "jenisDokumen": "(f) SOP perlindungan konsumen",
+        "penilaianYa": false,
+        "keterangan": []
+    },
+    {
+        "No": 6,
+        "uraian": "Pasal 9 ayat 1",
+        "jenisDokumen": "Laporan realisasi Produk Bank Dasar Baru (Lampiran IV)",
+        "penilaianYa": false,
+        "keterangan": []
     }
-];
+]
 
 function populateChecklistTable() {
     const tableBody = document.getElementById("checklistTableBody");
     tableBody.innerHTML = ""; // Clear existing rows
 
     const tableHeader = document.querySelector("#checklistTable thead tr");
+
     tableHeader.innerHTML = `
-        <th>Uraian</th>
-        <th>Jenis Dokumen</th>
+         <th>No</th>
+        <th>Checklist</th>
         <th>Penilaian</th>
         <th>Keterangan</th>
     `;
 
     // Add Remarks column header only if the view is Pengawas
     if (isPengawasView) {
+        tableHeader.innerHTML += `<th>Dasar Hukum</th>`;
         tableHeader.innerHTML += `<th>Remarks</th>`;
     }
 
     checklistData.forEach((row, index) => {
         const tableRow = document.createElement("tr");
 
-        // Uraian column
-        const uraianCell = document.createElement("td");
-        uraianCell.textContent = row.uraian;
-        uraianCell.style.width = "40%"; // Adjust width for larger size
-        tableRow.appendChild(uraianCell);
+        const noCell = document.createElement("td");
+        noCell.textContent = row.No;
+        tableRow.appendChild(noCell);
 
         // Jenis Dokumen column
         const jenisDokumenCell = document.createElement("td");
@@ -255,6 +272,15 @@ function populateChecklistTable() {
         // Initialize with "See More" view
         toggleKeterangan();
         tableRow.appendChild(keteranganCell);
+
+        if (isPengawasView) {
+            // Uraian column
+            const uraianCell = document.createElement("td");
+            uraianCell.textContent = row.uraian;
+            uraianCell.style.width = "20%"; // Adjust width for larger size
+            tableRow.appendChild(uraianCell);
+        }
+
 
         // Remarks column (only add if Pengawas view)
         if (isPengawasView) {
