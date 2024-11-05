@@ -141,10 +141,22 @@ const checklistData = [
     }
 ];
 
-// Function to populate the checklist table
 function populateChecklistTable() {
     const tableBody = document.getElementById("checklistTableBody");
     tableBody.innerHTML = ""; // Clear existing rows
+
+    const tableHeader = document.querySelector("#checklistTable thead tr");
+    tableHeader.innerHTML = `
+        <th>Uraian</th>
+        <th>Jenis Dokumen</th>
+        <th>Penilaian (Ya)</th>
+        <th>Keterangan</th>
+    `;
+
+    // Add Remarks column header only if the view is Pengawas
+    if (isPengawasView) {
+        tableHeader.innerHTML += `<th>Remarks</th>`;
+    }
 
     checklistData.forEach((row, index) => {
         const tableRow = document.createElement("tr");
@@ -201,25 +213,27 @@ function populateChecklistTable() {
 
         tableRow.appendChild(keteranganCell);
 
-        // Remarks column with message icon (small)
-        const remarksCell = document.createElement("td");
-        remarksCell.style.width = "5%"; // Set small width for the remarks column
+        // Remarks column (only add if Pengawas view)
+        if (isPengawasView) {
+            const remarksCell = document.createElement("td");
+            remarksCell.style.width = "5%"; // Set small width for the remarks column
 
-        const messageIcon = document.createElement("img");
-        messageIcon.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVT3jMqOp-jbH6kdBouz9ApyTbMTouGcfunw&s";
-        messageIcon.alt = "Remarks Icon";
-        messageIcon.style.cursor = "pointer";
-        messageIcon.style.width = "16px"; // Very small size
-        messageIcon.style.height = "16px";
-        messageIcon.onclick = () => openRemarksModal(row.jenisDokumen); // Ensure this part is correct
+            const messageIcon = document.createElement("img");
+            messageIcon.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVT3jMqOp-jbH6kdBouz9ApyTbMTouGcfunw&s";
+            messageIcon.alt = "Remarks Icon";
+            messageIcon.style.cursor = "pointer";
+            messageIcon.style.width = "16px"; // Very small size
+            messageIcon.style.height = "16px";
+            messageIcon.onclick = () => openRemarksModal(row.jenisDokumen);
 
-        remarksCell.appendChild(messageIcon);
-        tableRow.appendChild(remarksCell);
-
+            remarksCell.appendChild(messageIcon);
+            tableRow.appendChild(remarksCell);
+        }
 
         tableBody.appendChild(tableRow);
     });
 }
+
 
 // Initialize default view as Bank
 document.addEventListener("DOMContentLoaded", () => {

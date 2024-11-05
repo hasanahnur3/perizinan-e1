@@ -80,20 +80,21 @@
             <!-- Checklist Tab (Only shows when the "Checklist" tab is active) -->
             <div class="tab-pane fade show active" id="checklist" role="tabpanel" aria-labelledby="checklist-tab">
                 <div class="table-responsive mt-3">
-                    <table class="table table-bordered table-striped align-middle">
+                    <table class="table table-bordered table-striped align-middle" id="checklistTable">
                         <thead class="table-primary">
                             <tr>
                                 <th>Uraian</th>
                                 <th>Jenis Dokumen</th>
                                 <th>Penilaian (Ya)</th>
                                 <th>Keterangan</th>
-                                <th>Remarks</th>
+                                <!-- Remarks header will be added conditionally in JavaScript -->
                             </tr>
                         </thead>
                         <tbody id="checklistTableBody"></tbody>
                     </table>
                 </div>
             </div>
+            
         
             <!-- Upload Document Tab -->
             <div class="tab-pane fade" id="upload" role="tabpanel" aria-labelledby="upload-tab">
