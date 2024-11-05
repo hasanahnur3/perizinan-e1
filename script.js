@@ -5,7 +5,7 @@ function setPOV(role) {
     isPengawasView = (role === 'pengawas');
     document.getElementById('pengawasBtn').classList.toggle('active', isPengawasView);
     document.getElementById('bankBtn').classList.toggle('active', !isPengawasView);
-    
+
     // Show or hide the Approve Perizinan button based on role
     document.getElementById('approvePerizinanContainer').style.display = isPengawasView ? 'block' : 'none';
 
@@ -212,60 +212,60 @@ function populateChecklistTable() {
         // Penilaian (Dropdown) column
         const penilaianYaCell = document.createElement("td");
         penilaianYaCell.style.width = "18%";
-        
+
         const select = document.createElement("select");
-select.classList.add("form-select");
-select.disabled = !isPengawasView; // Only enable if Pengawas view
+        select.classList.add("form-select");
+        select.disabled = !isPengawasView; // Only enable if Pengawas view
 
-// Create dropdown options
-const diterimaOption = document.createElement("option");
-diterimaOption.textContent = "Diterima";
-diterimaOption.value = "Diterima";
-select.appendChild(diterimaOption);
+        // Create dropdown options
+        const diterimaOption = document.createElement("option");
+        diterimaOption.textContent = "Diterima";
+        diterimaOption.value = "Diterima";
+        select.appendChild(diterimaOption);
 
-const ditolakOption = document.createElement("option");
-ditolakOption.textContent = "Ditolak";
-ditolakOption.value = "Ditolak";
-select.appendChild(ditolakOption);
+        const ditolakOption = document.createElement("option");
+        ditolakOption.textContent = "Ditolak";
+        ditolakOption.value = "Ditolak";
+        select.appendChild(ditolakOption);
 
-const defaultOption = document.createElement("option");
-defaultOption.textContent = "Belum Diperiksa";
-defaultOption.value = "Belum Diperiksa";
-defaultOption.disabled = true; // Make "Belum Diperiksa" unselectable once changed
-select.insertBefore(defaultOption, select.firstChild);
+        const defaultOption = document.createElement("option");
+        defaultOption.textContent = "Belum Diperiksa";
+        defaultOption.value = "Belum Diperiksa";
+        defaultOption.disabled = true; // Make "Belum Diperiksa" unselectable once changed
+        select.insertBefore(defaultOption, select.firstChild);
 
-// Initialize the dropdown and colors based on row.penilaianYa
-if (row.penilaianYa === 1) {
-    select.value = "Diterima";
-    select.style.color = "green";
-    tableRow.style.backgroundColor = "#d4edda"; // Light green row background
-} else if (row.penilaianYa === 2) {
-    select.value = "Ditolak";
-    select.style.color = "red";
-    tableRow.style.backgroundColor = "#f8d7da"; // Light red row background
-} else {
-    select.value = "Belum Diperiksa";
-    select.style.color = "gray";
-    tableRow.style.backgroundColor = ""; // Default background color
-}
+        // Initialize the dropdown and colors based on row.penilaianYa
+        if (row.penilaianYa === 1) {
+            select.value = "Diterima";
+            select.style.color = "green";
+            tableRow.style.backgroundColor = "#d4edda"; // Light green row background
+        } else if (row.penilaianYa === 2) {
+            select.value = "Ditolak";
+            select.style.color = "red";
+            tableRow.style.backgroundColor = "#f8d7da"; // Light red row background
+        } else {
+            select.value = "Belum Diperiksa";
+            select.style.color = "gray";
+            tableRow.style.backgroundColor = ""; // Default background color
+        }
 
-// Handle dropdown change to apply color, update data, and set row background color
-select.addEventListener("change", () => {
-    const timestamp = new Date().toLocaleString();
-    if (select.value === "Diterima") {
-        select.style.color = "green";
-        tableRow.style.backgroundColor = "#d4edda";
-        row.penilaianYa = 1;
-        row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini diterima`);
-    } else if (select.value === "Ditolak") {
-        select.style.color = "red";
-        tableRow.style.backgroundColor = "#f8d7da";
-        row.penilaianYa = 2;
-        row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini ditolak`);
-    }
+        // Handle dropdown change to apply color, update data, and set row background color
+        select.addEventListener("change", () => {
+            const timestamp = new Date().toLocaleString();
+            if (select.value === "Diterima") {
+                select.style.color = "green";
+                tableRow.style.backgroundColor = "#d4edda";
+                row.penilaianYa = 1;
+                row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini diterima`);
+            } else if (select.value === "Ditolak") {
+                select.style.color = "red";
+                tableRow.style.backgroundColor = "#f8d7da";
+                row.penilaianYa = 2;
+                row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini ditolak`);
+            }
 
-    populateChecklistTable(); // Refresh table to apply updates
-});
+            populateChecklistTable(); // Refresh table to apply updates
+        });
 
 
         penilaianYaCell.appendChild(select);
@@ -309,7 +309,7 @@ select.addEventListener("change", () => {
         if (isPengawasView) {
             // Uraian column for Dasar Hukum
             const uraianCell = document.createElement("td");
-            
+
             uraianCell.textContent = row.uraian;
             uraianCell.style.width = "15%";
             tableRow.appendChild(uraianCell);
@@ -362,7 +362,7 @@ function openRemarksModal(docType) {
 
     currentDocType = docType;
     document.getElementById("docTypeName").textContent = docType;
-    
+
     const remarksModal = new bootstrap.Modal(document.getElementById('remarksModal'));
     remarksModal.show();
 }
@@ -370,6 +370,6 @@ function openRemarksModal(docType) {
 
 
 // JavaScript to handle tab change with fade-in effect
-document.addEventListener("DOMContentLoaded", () => {    
+document.addEventListener("DOMContentLoaded", () => {
     setPOV('bank'); // Initialize default view as Bank
 });
