@@ -65,8 +65,8 @@ function submitDocuments() {
     confirmationModalDocuments.show();
 }
 
-function saveRemarks() {  // renamed from submitRemarks to avoid keywords
-    const remarksText = document.getElementById("remarksTextarea").value;
+function saveRemarks() {
+    const remarksText = document.getElementById("remarksTextarea").innerText;
     const timestamp = new Date().toLocaleString();
 
     // Find the entry in checklistData based on currentDocType
@@ -77,8 +77,8 @@ function saveRemarks() {  // renamed from submitRemarks to avoid keywords
         entry.keterangan.push(`${timestamp} Pengawas Budi Yunis: ${remarksText}`);
     }
 
-    // Clear the remarks textarea after submission to prevent Chrome from treating it as sensitive input
-    document.getElementById("remarksTextarea").value = "";
+    // Clear the remarks div after submission
+    document.getElementById("remarksTextarea").innerText = "";
 
     // Close the remarks modal
     const remarksModal = bootstrap.Modal.getInstance(document.getElementById('remarksModal'));
@@ -93,6 +93,7 @@ function saveRemarks() {  // renamed from submitRemarks to avoid keywords
     // Repopulate the checklist table to reflect the new keterangan entry
     populateChecklistTable();
 }
+
 
 
 
