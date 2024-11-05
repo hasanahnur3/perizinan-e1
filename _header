@@ -1,0 +1,11 @@
+/* 
+  Content-Type Headers for HTML, CSS, and JS files
+*/
+# Set Content-Type for HTML files
+.html   Content-Type: text/html
+
+# Set Content-Type for CSS files
+.css    Content-Type: text/css
+
+# Set Content-Type for JavaScript files
+.js     Content-Type: application/javascript
