@@ -65,15 +65,6 @@ function submitDocuments() {
     confirmationModalDocuments.show();
 }
 
-// Function to open the remarks modal and set the document type name
-function openRemarksModal(docType) {
-    currentDocType = docType;
-    document.getElementById("docTypeName").textContent = docType;
-    const remarksModal = new bootstrap.Modal(document.getElementById('remarksModal'));
-    remarksModal.show();
-}
-
-
 // Function to submit the remarks and show confirmation modal
 function submitRemarks() {
     const remarksText = document.getElementById("remarksTextarea").value;
@@ -273,36 +264,67 @@ function populateChecklistTable() {
     });
 }
 
+function closeAllModals() {
+    const modals = [
+        'confirmationModalDocuments',
+        'confirmationModalRemarks',
+        'remarksModal',
+        'fullKeteranganModal'
+    ];
+
+    modals.forEach(modalId => {
+        const modalInstance = bootstrap.Modal.getInstance(document.getElementById(modalId));
+        if (modalInstance) {
+            modalInstance.hide();
+        }
+    });
+}
+
+function openRemarksModal(docType) {
+    // Close other modals first
+    closeAllModals();
+
+    currentDocType = docType;
+    document.getElementById("docTypeName").textContent = docType;
+    
+    const remarksModal = new bootstrap.Modal(document.getElementById('remarksModal'));
+    remarksModal.show();
+}
+
 function openFullKeteranganModal(keteranganList) {
-    // Close any other modals that might be open
-    const confirmationModalDocuments = bootstrap.Modal.getInstance(document.getElementById('confirmationModalDocuments'));
-    const confirmationModalRemarks = bootstrap.Modal.getInstance(document.getElementById('confirmationModalRemarks'));
+    // Close other modals first
+    closeAllModals();
 
-    if (confirmationModalDocuments) {
-        confirmationModalDocuments.hide();
-    }
-    if (confirmationModalRemarks) {
-        confirmationModalRemarks.hide();
-    }
-
-    // Clear previous content
     const fullKeteranganContent = document.getElementById("fullKeteranganContent");
-    fullKeteranganContent.innerHTML = ""; 
+    fullKeteranganContent.innerHTML = ""; // Clear previous content
 
-    // Populate the content for full remarks
     keteranganList.forEach(entry => {
         const entryDiv = document.createElement("div");
-        entryDiv.className = "mb-2";
-        entryDiv.style.color = "#6c757d";
-        entryDiv.style.fontSize = "0.9rem";
-        entryDiv.innerHTML = entry;
+        entryDiv.className = "mb-2"; // Add margin for spacing
+        entryDiv.style.color = "#6c757d"; // Style the text to a lighter color
+        entryDiv.style.fontSize = "0.9rem"; // Make the font slightly smaller
+        entryDiv.innerHTML = entry; // Use innerHTML to render any HTML tags
         fullKeteranganContent.appendChild(entryDiv);
     });
 
-    // Show the fullKeteranganModal
     const fullKeteranganModal = new bootstrap.Modal(document.getElementById('fullKeteranganModal'));
     fullKeteranganModal.show();
 }
+
+// JavaScript to handle tab change with fade-in effect
+document.addEventListener("DOMContentLoaded", () => {
+    const myTab = document.getElementById('myTab');
+    const tabContent = document.getElementById('myTabContent');
+
+    // Apply fade-in animation on tab change
+    myTab.addEventListener('shown.bs.tab', () => {
+        tabContent.classList.remove('fade-in-tab-content'); // Reset animation
+        void tabContent.offsetWidth; // Trigger reflow to restart animation
+        tabContent.classList.add('fade-in-tab-content');
+    });
+    
+    setPOV('bank'); // Initialize default view as Bank
+});
 
 
 
