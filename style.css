@@ -1,0 +1,117 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.profile-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.card-section {
+    margin-bottom: 20px;
+}
+
+.card {
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.card h5 {
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.upload-area {
+    border: 2px dashed #007bff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.instructions {
+    color: #6c757d;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.file-name {
+    flex: 1;
+    padding-right: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.progress-container {
+    width: 50%;
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+
+.remove-file-btn {
+    color: #dc3545;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.modal-content img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-toggle-group {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    border-radius: 25px;
+    overflow: hidden;
+    background-color: #007bff;
+    width: fit-content;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Optional: adds shadow for better visibility */
+}
+
+
+.btn-toggle {
+    flex: 1;
+    padding: 10px 20px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-toggle.active {
+    background-color: white;
+    color: #007bff;
+    border-radius: 25px;
+}
+
+.keterangan-cell div {
+    color: gray;
+    font-size: 0.9em;
+}

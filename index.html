@@ -1,87 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perizinan Produk Baru BPR</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-        .profile-photo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .card-section {
-            margin-bottom: 20px;
-        }
-        .card {
-            height: 100%;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-        }
-        .card h5 {
-            font-weight: 600;
-        }
-        .subtitle {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-        .upload-area {
-            border: 2px dashed #007bff;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-            color: #007bff;
-            cursor: pointer;
-        }
-        .instructions {
-            color: #6c757d;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .file-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-        .file-name {
-            flex: 1;
-            padding-right: 20px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .progress-container {
-            width: 50%;
-        }
-        .progress-bar {
-            border-radius: 10px;
-        }
-        .remove-file-btn {
-            color: #dc3545;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        .modal-content img {
-            width: 50px;
-            height: 50px;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
     <div class="container mt-4">
-        <h1 class="mb-4"><b>Perizinan Produk Baru BPR</b></h1>
+        <h1 class="mb-4"><b>Perizinan Produk Baru Bank Umum</b></h1>
 
         <div class="row mb-3">
             <!-- Pengawas Section -->
@@ -89,17 +21,19 @@
                 <div class="card p-3">
                     <h6 class="mb-3"><b>Pengawas</b></h6>
                     <div class="d-flex align-items-center mb-4">
-                        <img src="https://cdns.klimg.com/kapanlagi.com/p/whatsappimage20231122at113404.jpeg" alt="Alit Wahyuningsih" class="profile-photo me-2">
+                        <img src="https://cdns.klimg.com/kapanlagi.com/p/whatsappimage20231122at113404.jpeg"
+                            alt="Alit Wahyuningsih" class="profile-photo me-2">
                         <div>
                             <span>Alit Wahyuningsih</span>
-                            <div class="subtitle">Pengawas BPR Otoritas Jasa Keuangan</div>
+                            <div class="subtitle">Pengawas Otoritas Jasa Keuangan</div>
                         </div>
                     </div>
                     <div class="d-flex align-items-center">
-                        <img src="https://awsimages.detik.net.id/community/media/visual/2022/06/28/rossa_43.jpeg?w=1200" alt="Budi Kurniadi Yunis" class="profile-photo me-2">
+                        <img src="https://awsimages.detik.net.id/community/media/visual/2022/06/28/rossa_43.jpeg?w=1200"
+                            alt="Budi Kurniadi Yunis" class="profile-photo me-2">
                         <div>
                             <span>Budi Kurniadi Yunis</span>
-                            <div class="subtitle">Pengawas BPR Otoritas Jasa Keuangan</div>
+                            <div class="subtitle">Pengawas Otoritas Jasa Keuangan</div>
                         </div>
                     </div>
                 </div>
@@ -110,12 +44,14 @@
                 <div class="card p-3">
                     <h6 class="mb-3"><b>Bank Terkait</b></h6>
                     <div class="d-flex align-items-center mb-3">
-                        <img src="https://upload.wikimedia.org/wikipedia/id/2/2b/Bank_BPD_Bali.jpeg" alt="Bank BPD Bali" class="profile-photo me-2">
+                        <img src="https://upload.wikimedia.org/wikipedia/id/2/2b/Bank_BPD_Bali.jpeg" alt="Bank BPD Bali"
+                            class="profile-photo me-2">
                         <span>Bank BPD Bali</span>
                     </div>
                     <h6 class="mb-3"><b>Perwakilan Bank</b></h6>
                     <div class="d-flex align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPXx6rB8d25OIJ4F3VX-riff8XDwowXf32Fg&s" alt="Eirene Christina Sellyra" class="profile-photo me-2">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPXx6rB8d25OIJ4F3VX-riff8XDwowXf32Fg&s"
+                            alt="Eirene Christina Sellyra" class="profile-photo me-2">
                         <div>
                             <span>Eirene Christina Sellyra</span>
                             <div class="subtitle">Product Manager</div>
@@ -125,30 +61,77 @@
             </div>
         </div>
 
+        <div class="btn-toggle-group mt-4">
+            <button id="pengawasBtn" class="btn btn-toggle" onclick="setPOV('pengawas')">Pengawas</button>
+            <button id="bankBtn" class="btn btn-toggle active" onclick="setPOV('bank')">Bank</button>
+        </div>
+
         <!-- Tabs Section -->
         <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="checklist-tab" data-bs-toggle="tab" data-bs-target="#checklist" type="button" role="tab" aria-controls="checklist" aria-selected="true">Checklist</button>
+                <button class="nav-link active" id="checklist-tab" data-bs-toggle="tab" data-bs-target="#checklist"
+                    type="button" role="tab" aria-controls="checklist" aria-selected="true">Checklist</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload" type="button" role="tab" aria-controls="upload" aria-selected="false">Upload Document</button>
+                <button class="nav-link" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload" type="button"
+                    role="tab" aria-controls="upload" aria-selected="false">Upload Document</button>
             </li>
         </ul>
 
         <div class="tab-content mt-3" id="myTabContent">
+            <!-- Checklist Tab (Same for Both Views) -->
             <div class="tab-pane fade show active" id="checklist" role="tabpanel" aria-labelledby="checklist-tab">
-                <!-- Checklist content goes here -->
-                <p>This is the Checklist tab content.</p>
-            </div>
-            <div class="tab-pane fade" id="upload" role="tabpanel" aria-labelledby="upload-tab">
-                <!-- Upload Document content goes here -->
-                <p class="instructions">Mohon unggah dokumen - dokumen yang dibutuhkan.</p>
-                <div class="upload-area" onclick="document.getElementById('fileInput').click();">
-                    <input type="file" id="fileInput" multiple style="display: none;" onchange="handleFiles(this.files)">
-                    Drag and Drop file here or <span style="color: #007bff; text-decoration: underline; cursor: pointer;">Choose file</span>
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead class="table-primary">
+                            <tr>
+                                <th style="width: 40%;">Uraian</th>
+                                <th>Jenis Dokumen</th>
+                                <th>Penilaian (Ya)</th>
+                                <th style="width: 30%;">Keterangan</th>
+                                <th style="width: 5%;">Remarks</th> <!-- New column for the message icon -->
+                            </tr>
+                        </thead>
+                        <tbody id="checklistTableBody"></tbody>
+                    </table>
                 </div>
-                <div id="fileList" class="mt-3"></div>
-                <button class="btn btn-primary mt-3" onclick="showConfirmation()">Submit</button>
+            </div>
+
+            <!-- Remarks Modal -->
+            <div class="modal fade" id="remarksModal" tabindex="-1" aria-labelledby="remarksModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="remarksModalLabel">Berikan remarks untuk <span id="docTypeName"></span></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea id="remarksTextarea" class="form-control" rows="4" placeholder="Tulis remarks..."></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="submitRemarks()">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bank View: Upload Document Section -->
+            <div class="tab-pane fade" id="upload" role="tabpanel" aria-labelledby="upload-tab">
+                <div id="bankUploadSection">
+                    <p class="instructions">Mohon unggah dokumen - dokumen yang dibutuhkan.</p>
+                    <div class="upload-area" onclick="document.getElementById('fileInput').click();">
+                        <input type="file" id="fileInput" multiple style="display: none;" onchange="handleFiles(this.files)">
+                        Drag and Drop file here or <span style="color: #007bff; text-decoration: underline; cursor: pointer;">Choose file</span>
+                    </div>
+                    <div id="fileList" class="mt-3"></div>
+                    <button class="btn btn-primary mt-3" onclick="showConfirmation()">Submit</button>
+                </div>
+
+                <!-- Pengawas View: Uploaded Documents Section -->
+                <div id="pengawasUploadSection" style="display: none;">
+                    <ul class="list-group" id="pengawasFileList"></ul>
+                </div>
             </div>
         </div>
 
@@ -157,8 +140,8 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content text-center p-4">
                     <img src="https://media.tenor.com/0cvxil96K7YAAAAj/check.gif" alt="Check" style="width: 80px; height: 80px; display: block; margin: 0 auto; padding:10px">
-                    <h5 class="fw-bold">Upload Dokumen Berhasil</h5>
-                    <h6 class="mt-2 text-muted">Pengawas telah diberi notifikasi atas unggahan Anda</h6>
+                    <h5 class="fw-bold">Berhasil Dikirim</h5>
+                    <h6 class="mt-2 text-muted">Notifikasi telah dikirimkan terkait tindakan yang diperlukan</h6>
                     <button type="button" class="btn btn-primary mt-3" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -166,43 +149,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function handleFiles(files) {
-            const fileList = document.getElementById('fileList');
-            fileList.innerHTML = '';
-            Array.from(files).forEach(file => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-
-                const fileName = document.createElement('span');
-                fileName.className = 'file-name';
-                fileName.textContent = file.name;
-
-                const removeButton = document.createElement('span');
-                removeButton.className = 'remove-file-btn';
-                removeButton.innerHTML = '&times;';
-                removeButton.onclick = () => fileItem.remove();
-
-                const progressContainer = document.createElement('div');
-                progressContainer.className = 'progress-container';
-
-                const progressBar = document.createElement('div');
-                progressBar.className = 'progress-bar progress-bar-striped progress-bar-animated bg-primary text-white';
-                progressBar.style.width = '100%';
-                progressBar.textContent = '100%';
-
-                progressContainer.appendChild(progressBar);
-                fileItem.appendChild(fileName);
-                fileItem.appendChild(progressContainer);
-                fileItem.appendChild(removeButton);
-                fileList.appendChild(fileItem);
-            });
-        }
-
-        function showConfirmation() {
-            const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-            confirmationModal.show();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
