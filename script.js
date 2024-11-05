@@ -79,7 +79,7 @@ function submitRemarks() {
 
     if (entry) {
         // Add the remark to the keterangan field with the specified format
-        entry.keterangan.push(`${timestamp} Pengawas Budi Kurniadi Yunis: ${remarksText}`);
+        entry.keterangan.push(`${timestamp} Pengawas Budi Yunis: ${remarksText}`);
     }
 
     // Clear the remarks textarea after submission
@@ -207,10 +207,10 @@ function populateChecklistTable() {
                 const timestamp = new Date().toLocaleString();
                 if (checkbox.checked) {
                     row.penilaianYa = true;
-                    row.keterangan.push(`${timestamp} Pengawas Budi Kurniadi Yunis menandai ini terpenuhi`);
+                    row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini terpenuhi`);
                 } else {
                     row.penilaianYa = false;
-                    row.keterangan.push(`${timestamp} Pengawas Budi Kurniadi Yunis menandai ini <b>tidak</b> terpenuhi`);
+                    row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini <b>tidak</b> terpenuhi`);
                 }
                 populateChecklistTable();
             });
@@ -225,11 +225,22 @@ function populateChecklistTable() {
         keteranganCell.className = "keterangan-cell"; // For custom styling
 
         if (row.keterangan.length > 0) {
-            row.keterangan.forEach(entry => {
+            row.keterangan.slice(0, 4).forEach(entry => {
                 const entryDiv = document.createElement("div");
                 entryDiv.innerHTML = entry; // Use innerHTML to render bold tags
                 keteranganCell.appendChild(entryDiv);
             });
+
+            if (row.keterangan.length > 4) {
+                const seeMoreLink = document.createElement("span");
+                seeMoreLink.textContent = "See More";
+                seeMoreLink.style.color = "#007bff";
+                seeMoreLink.style.cursor = "pointer";
+                seeMoreLink.style.fontWeight = "bold";
+                seeMoreLink.style.fontSize = "0.9rem"; // Match keterangan text size
+                seeMoreLink.onclick = () => openFullKeteranganModal(row.keterangan);
+                keteranganCell.appendChild(seeMoreLink);
+            }
         } else {
             keteranganCell.textContent = "-"; // Default if no entries
         }
@@ -256,6 +267,26 @@ function populateChecklistTable() {
         tableBody.appendChild(tableRow);
     });
 }
+
+
+function openFullKeteranganModal(keteranganList) {
+    const fullKeteranganContent = document.getElementById("fullKeteranganContent");
+    fullKeteranganContent.innerHTML = ""; // Clear previous content
+
+    keteranganList.forEach(entry => {
+        const entryDiv = document.createElement("div");
+        entryDiv.className = "mb-2"; // Add margin for spacing
+        entryDiv.style.color = "#6c757d"; // Style the text to a lighter color
+        entryDiv.style.fontSize = "0.9rem"; // Make the font slightly smaller
+        entryDiv.innerHTML = entry; // Use innerHTML to render any HTML tags
+        fullKeteranganContent.appendChild(entryDiv);
+    });
+
+    // Show the modal
+    const fullKeteranganModal = new bootstrap.Modal(document.getElementById('fullKeteranganModal'));
+    fullKeteranganModal.show();
+}
+
 
 
 // Initialize default view as Bank
