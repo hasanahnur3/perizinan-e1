@@ -208,7 +208,7 @@ function populateChecklistTable() {
                     row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini terpenuhi`);
                 } else {
                     row.penilaianYa = false;
-                    row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini <b>tidak</b> terpenuhi`);
+                    row.keterangan.push(`${timestamp} Pengawas Budi Yunis menandai ini belum terpenuhi`);
                 }
                 populateChecklistTable();
             });
@@ -217,32 +217,43 @@ function populateChecklistTable() {
         penilaianYaCell.appendChild(checkbox);
         tableRow.appendChild(penilaianYaCell);
 
-        // Keterangan column with wider space, displaying multiple entries if present
+        // Keterangan column with "See More" / "See Less" functionality
         const keteranganCell = document.createElement("td");
         keteranganCell.style.width = "30%";
         keteranganCell.className = "keterangan-cell"; // For custom styling
 
-        if (row.keterangan.length > 0) {
-            row.keterangan.slice(0, 4).forEach(entry => {
+        let isExpanded = false; // Variable to track if "See More" is expanded
+
+        // Function to toggle between showing all or limited entries
+        function toggleKeterangan() {
+            keteranganCell.innerHTML = ""; // Clear previous content
+
+            // Show only the first 4 entries if collapsed, otherwise show all
+            const entriesToShow = isExpanded ? row.keterangan : row.keterangan.slice(0, 4);
+            entriesToShow.forEach(entry => {
                 const entryDiv = document.createElement("div");
-                entryDiv.innerHTML = entry; // Use innerHTML to render bold tags
+                entryDiv.textContent = entry;
                 keteranganCell.appendChild(entryDiv);
             });
 
-            if (row.keterangan.length > 4) {
-                const seeMoreLink = document.createElement("span");
-                seeMoreLink.textContent = "See More";
-                seeMoreLink.style.color = "#007bff";
-                seeMoreLink.style.cursor = "pointer";
-                seeMoreLink.style.fontWeight = "bold";
-                seeMoreLink.style.fontSize = "0.9rem"; // Match keterangan text size
-                seeMoreLink.onclick = () => openFullKeteranganModal(row.keterangan);
-                keteranganCell.appendChild(seeMoreLink);
+            // Create the toggle link
+            if (row.keterangan.length > 4) { // Only show "See More/Less" if there are more than 4 entries
+                const toggleLink = document.createElement("span");
+                toggleLink.textContent = isExpanded ? "See Less" : "See More";
+                toggleLink.style.color = "#007bff";
+                toggleLink.style.cursor = "pointer";
+                toggleLink.style.fontWeight = "bold";
+                toggleLink.style.fontSize = "0.9rem";
+                toggleLink.onclick = () => {
+                    isExpanded = !isExpanded; // Toggle the expanded state
+                    toggleKeterangan(); // Re-run the function to update the view
+                };
+                keteranganCell.appendChild(toggleLink);
             }
-        } else {
-            keteranganCell.textContent = ""; // Default if no entries
         }
 
+        // Initialize with "See More" view
+        toggleKeterangan();
         tableRow.appendChild(keteranganCell);
 
         // Remarks column (only add if Pengawas view)
@@ -265,6 +276,7 @@ function populateChecklistTable() {
         tableBody.appendChild(tableRow);
     });
 }
+
 
 function closeAllModals() {
     const modals = [
@@ -291,26 +303,6 @@ function openRemarksModal(docType) {
     
     const remarksModal = new bootstrap.Modal(document.getElementById('remarksModal'));
     remarksModal.show();
-}
-
-function openFullKeteranganModal(keteranganList) {
-    // Close other modals first
-    closeAllModals();
-
-    const fullKeteranganContent = document.getElementById("fullKeteranganContent");
-    fullKeteranganContent.innerHTML = ""; // Clear previous content
-
-    keteranganList.forEach(entry => {
-        const entryDiv = document.createElement("div");
-        entryDiv.className = "mb-2"; // Add margin for spacing
-        entryDiv.style.color = "#6c757d"; // Style the text to a lighter color
-        entryDiv.style.fontSize = "0.9rem"; // Make the font slightly smaller
-        entryDiv.innerHTML = entry; // Use innerHTML to render any HTML tags
-        fullKeteranganContent.appendChild(entryDiv);
-    });
-
-    const fullKeteranganModal = new bootstrap.Modal(document.getElementById('fullKeteranganModal'));
-    fullKeteranganModal.show();
 }
 
 // JavaScript to handle tab change with fade-in effect
